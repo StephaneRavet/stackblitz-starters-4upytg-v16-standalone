@@ -1,0 +1,9 @@
+<app-search-bar (change)="onCriteriaChange($event)"/>
+
+<ul>
+  <li *ngFor="let user of users$ | async; trackBy: trackById">
+    <a [routerLink]=" '/users/' + user.id ">
+      {{user.name}}
+    </a> - {{user.email}}
+  </li>
+</ul>

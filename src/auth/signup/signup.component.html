@@ -1,0 +1,61 @@
+<form #signupForm="ngForm" (submit)="signup()">
+  <div *ngIf="signupForm.controls.username?.touched">
+    <div *ngIf="signupForm.controls.username?.errors?.required">
+      Le nom d'utilisateur est requis.
+    </div>
+    <div *ngIf="signupForm.controls.username?.errors?.minlength">
+      Le nom d'utilisateur doit comporter au moins 4 caractères.
+    </div>
+  </div>
+
+  <!-- E-mail -->
+  <div *ngIf="signupForm.controls.email?.touched">
+    <div *ngIf="signupForm.controls.email?.errors?.required">
+      L'e-mail est requis.
+    </div>
+    <div *ngIf="signupForm.controls.email?.errors?.email">
+      Veuillez entrer un e-mail valide.
+    </div>
+  </div>
+
+  <!-- Mot de passe -->
+  <div *ngIf="signupForm.controls.password?.touched">
+    <div *ngIf="signupForm.controls.password?.errors?.required">
+      Un mot de passe est requis.
+    </div>
+    <div *ngIf="signupForm.controls.password?.errors?.minlength">
+      Le mot de passe doit comporter au moins 6 caractères.
+    </div>
+  </div>
+  <div>
+    <label for="username">Nom d'utilisateur</label>
+    <input
+      type="text"
+      id="username"
+      name="username"
+      ngModel
+      required
+      minlength="4"
+      [appAutofocus]="true"
+    />
+    <!-- Message d'erreur pour le nom d'utilisateur -->
+  </div>
+  <div>
+    <label for="email">E-mail</label>
+    <input type="email" id="email" name="email" ngModel required email />
+    <!-- Message d'erreur pour l'e-mail -->
+  </div>
+  <div>
+    <label for="password">Mot de passe</label>
+    <input
+      type="password"
+      id="password"
+      name="password"
+      ngModel
+      required
+      minlength="6"
+    />
+    <!-- Message d'erreur pour le mot de passe -->
+  </div>
+  <button [disabled]="!signupForm.valid">S'inscrire</button>
+</form>
